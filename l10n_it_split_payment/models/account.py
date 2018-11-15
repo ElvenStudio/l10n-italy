@@ -91,13 +91,19 @@ class AccountInvoice(models.Model):
             for payment_line in move_line_pool.browse(payment_line_ids):
                 inv_total = invoice.amount_sp + invoice.amount_total
                 if invoice.type == 'out_invoice':
-                    payment_line_amount = (
-                        invoice.amount_total * payment_line.debit) / inv_total
+                    if inv_total:
+                        payment_line_amount = (
+                            invoice.amount_total * payment_line.debit) / inv_total
+                    else:
+                        payment_line_amount = 0
                     payment_line.write(
                         {'debit': payment_line_amount}, update_check=False)
                 elif invoice.type == 'out_refund':
-                    payment_line_amount = (
-                        invoice.amount_total * payment_line.credit) / inv_total
+                    if inv_total:
+                        payment_line_amount = (
+                            invoice.amount_total * payment_line.credit) / inv_total
+                    else:
+                        payment_line_amount = 0
                     payment_line.write(
                         {'credit': payment_line_amount}, update_check=False)
 
