@@ -6,7 +6,7 @@ from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
 
 
-class account_voucher(orm.Model):
+class AccountVoucher(orm.Model):
     _inherit = "account.voucher"
 
     def recompute_voucher_lines(self, cr, uid, ids, partner_id, journal_id,
@@ -17,7 +17,7 @@ class account_voucher(orm.Model):
         move_line_obj = self.pool['account.move.line']
         voucher_line_obj = self.pool['account.voucher.line']
         dp_obj = self.pool['decimal.precision']
-        res = super(account_voucher, self).recompute_voucher_lines(
+        res = super(AccountVoucher, self).recompute_voucher_lines(
             cr, uid, ids, partner_id, journal_id, price, currency_id, ttype,
             date, context=context)
 
@@ -133,7 +133,7 @@ class account_voucher(orm.Model):
         voucher_line_obj = self.pool['account.voucher.line']
         payment_term_obj = self.pool['account.payment.term']
         reconcile_obj = self.pool['account.move.reconcile']
-        line_total, rec_list_ids = super(account_voucher, self).\
+        line_total, rec_list_ids = super(AccountVoucher, self).\
             voucher_move_line_create(cr, uid, voucher_id, line_total, move_id,
                                      company_currency, current_currency,
                                      context=context)
@@ -248,7 +248,7 @@ class account_voucher(orm.Model):
         '''
         Assign payment move to wt lines
         '''
-        res = super(account_voucher, self).action_move_line_create(
+        res = super(AccountVoucher, self).action_move_line_create(
             cr, uid, ids, context=None)
         for voucher in self.browse(cr, uid, ids):
             for v_line in voucher.line_ids:
@@ -258,7 +258,7 @@ class account_voucher(orm.Model):
         return res
 
 
-class account_voucher_line(orm.Model):
+class AccountVoucherLine(orm.Model):
     _inherit = "account.voucher.line"
 
     def _amount_withholding_tax(self, cr, uid, ids, name, args, context=None):
@@ -367,7 +367,7 @@ class account_voucher_line(orm.Model):
         '''
         TO CONSIDER: Amount tot = amount net + amount WT
         '''
-        res = super(account_voucher_line, self).onchange_reconcile(
+        res = super(AccountVoucherLine, self).onchange_reconcile(
             cr, uid, ids, reconcile, amount, amount_unreconciled,
             context=context)
         if reconcile:
@@ -461,14 +461,14 @@ class account_voucher_line(orm.Model):
         return res
 
     def create(self, cr, uid, vals, *args, **kwargs):
-        res_id = super(account_voucher_line, self).create(
+        res_id = super(AccountVoucherLine, self).create(
             cr, uid, vals, *args, **kwargs)
         self.recompute_withholding_tax_voucher_line(
             cr, uid, res_id, context=None)
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
-        res = super(account_voucher_line, self).write(
+        res = super(AccountVoucherLine, self).write(
             cr, uid, ids, vals, context)
         if 'amount_withholding_tax' in vals:
             for line_id in ids:
@@ -476,7 +476,7 @@ class account_voucher_line(orm.Model):
         return res
 
 
-class withholding_tax_voucher_line(orm.Model):
+class WithholdingTaxVoucherLine(orm.Model):
     _name = 'withholding.tax.voucher.line'
     _description = 'Withholding Tax Voucher Line'
 
@@ -546,14 +546,14 @@ class withholding_tax_voucher_line(orm.Model):
         return True
 
     def create(self, cr, uid, vals, *args, **kwargs):
-        res_id = super(withholding_tax_voucher_line, self).create(
+        res_id = super(WithholdingTaxVoucherLine, self).create(
             cr, uid, vals, *args, **kwargs)
         # Align with wt move
         self._align_wt_move(cr, uid, [res_id])
         return res_id
 
     def write(self, cr, uid, ids, vals, context=None):
-        res = super(withholding_tax_voucher_line, self).write(
+        res = super(WithholdingTaxVoucherLine, self).write(
             cr, uid, ids, vals, context)
         # Align with wt move
         self._align_wt_move(cr, uid, ids)

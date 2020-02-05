@@ -7,7 +7,7 @@ from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
-class account_move(models.Model):
+class AccountMove(models.Model):
     _inherit = "account.move"
 
     @api.one
@@ -88,13 +88,13 @@ class account_move(models.Model):
         return res
 
 
-class account_move_line(models.Model):
+class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     withholding_tax_amount = fields.Float(string='Withholding Tax Amount')
 
 
-class account_fiscal_position(models.Model):
+class AccountFiscalPosition(models.Model):
     _inherit = "account.fiscal.position"
 
     withholding_tax_ids = fields.Many2many(
@@ -102,7 +102,7 @@ class account_fiscal_position(models.Model):
         'fiscal_position_id', 'withholding_tax_id', string='Withholding Tax')
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     @api.multi
@@ -139,7 +139,7 @@ class account_invoice(models.Model):
         Split amount withholding tax on account move lines
         '''
         dp_obj = self.env['decimal.precision']
-        res = super(account_invoice, self).action_move_create()
+        res = super(AccountInvoice, self).action_move_create()
 
         for inv in self:
             # Rates
@@ -199,7 +199,7 @@ class account_invoice(models.Model):
 
     @api.one
     def button_reset_taxes(self):
-        res = super(account_invoice, self).button_reset_taxes()
+        res = super(AccountInvoice, self).button_reset_taxes()
         self.compute_all_withholding_tax()
         return res
 
@@ -212,7 +212,7 @@ class account_invoice(models.Model):
 
     @api.v7
     def invoice_pay_customer(self, cr, uid, ids, context=None):
-        res = super(account_invoice, self).invoice_pay_customer(
+        res = super(AccountInvoice, self).invoice_pay_customer(
             cr, uid, ids, context)
 
         inv = self.browse(cr, uid, ids[0], context=context)
@@ -230,7 +230,7 @@ class account_invoice(models.Model):
             return total_withholding_tax_excluded
 
 
-class account_invoice_withholding_tax(models.Model):
+class AccountInvoiceWithholdingTax(models.Model):
     '''
     Withholding tax lines in the invoice
     '''
