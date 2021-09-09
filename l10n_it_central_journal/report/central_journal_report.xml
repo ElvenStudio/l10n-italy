@@ -180,7 +180,6 @@
                             <t t-set="lines" t-value="_get_move_line_ids(move.id)" />
                             <t t-foreach="lines" t-as="line">
                                 <t t-set="counter" t-value="counter + 1"/>
-                                <t t-log="line" />
                                 <t t-set="tot_credit" t-value="tot_credit + line['credit']"/>
                                 <t t-set="tot_debit" t-value="tot_debit + line['debit']"/>
                                 <tr class="avoid_break">
