@@ -342,11 +342,11 @@ class EInvoiceLine(models.Model):
     _name = 'einvoice.line'
     _description = 'E-invoice line'
     invoice_id = fields.Many2one(
-        "account.invoice", "Bill", readonly=True, ondelete='cascade')
+        "account.invoice", "Bill", readonly=True, ondelete='cascade', index=True)
     # ElvenStudio FIX: invoice_line_id create link between 'einvoice.line'
     # and 'account.invoice.line'
     invoice_line_id = fields.Many2one(
-        "account.invoice.line", "Invoice line", readonly=True)
+        "account.invoice.line", "Invoice line", readonly=True, index=True)
     line_number = fields.Integer('Line Number', readonly=True)
     service_type = fields.Char('Sale Provision Type', readonly=True)
     cod_article_ids = fields.One2many(
