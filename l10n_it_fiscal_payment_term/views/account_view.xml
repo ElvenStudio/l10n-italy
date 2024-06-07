@@ -9,7 +9,7 @@
                 <field name="line_ids" position="after">
                     <group col="2" colspan="2">
                         <separator colspan="2" string="Fiscal"/>
-                        <field name="fatturapa_pt_id"/>
+                        <field name="fatturapa_pt_id" required="1"/>
                     </group>
                 </field>
             </field>

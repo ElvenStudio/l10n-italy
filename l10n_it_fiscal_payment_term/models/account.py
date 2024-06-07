@@ -24,5 +24,4 @@ class AccountPaymentTerm(models.Model):
     fatturapa_pt_id = fields.Many2one(
         'fatturapa.payment_term',
         string=_('Fiscal Payment Term'),
-        required=True
     )
