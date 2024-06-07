@@ -19,5 +19,4 @@ class PaymentMode(models.Model):
     fatturapa_pm_id = fields.Many2one(
         comodel_name='fatturapa.payment_method',
         string=_('Fiscal Payment Method'),
-        required=True
     )
