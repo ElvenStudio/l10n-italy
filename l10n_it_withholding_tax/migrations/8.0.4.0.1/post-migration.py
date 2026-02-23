@@ -22,10 +22,10 @@ def migrate(cr, version):
         start_time = time.time()
         block_time = start_time
 
+        query = "SELECT id FROM account_invoice WHERE withholding_tax_backup = True"
+        cr.execute(query)
+        ids_invoices = [row[0] for row in cr.fetchall()]
         invoice_model = env['account.invoice']
-        domain = [('withholding_tax_backup', '=', True)]
-        ids_invoices = invoice_model.search_read(domain=domain, fields=['id'])
-        ids_invoices = [v['id'] for v in ids_invoices]
 
         items = 20
         while ids_invoices:
