@@ -25,7 +25,7 @@
             <field name="numbercall">-1</field>
             <field name="model">account.invoice</field>
             <field name="function">cron_send_invoices_with_errors</field>
-            <field name="args">(264, 1)</field>
+            <field name="args">()</field>
         </record>
 
     </data>

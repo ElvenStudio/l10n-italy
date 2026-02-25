@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-28 18:21+0000\n"
-"PO-Revision-Date: 2019-01-28 18:21+0000\n"
+"POT-Creation-Date: 2026-02-25 09:38+0000\n"
+"PO-Revision-Date: 2026-02-25 09:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgstr ""
 
 #. module: l10n_it_fatturapa_pec_cron
 #: view:website:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_view
-msgid "Dear"
-msgstr "Gentile"
+msgid "Dear user,"
+msgstr "Gentile utente,"
 
 #. module: l10n_it_fatturapa_pec_cron
 #: model:ir.model,name:l10n_it_fatturapa_pec_cron.model_fatturapa_attachment_out
@@ -32,7 +32,13 @@ msgid "E-invoice errors marked as resolved"
 msgstr "Errori della fattura elettronica marcati come risolti"
 
 #. module: l10n_it_fatturapa_pec_cron
-#: code:addons/l10n_it_fatturapa_pec_cron/models/fatturapa_attachment_out.py:81
+#: code:addons/l10n_it_fatturapa_pec_cron/models/fatturapa_attachment_out.py:69
+#, python-format
+msgid "Electronic invoice data missing. Check partner Electronic Invoice tab."
+msgstr "Dati mancanti nella fattura elettronica. Controlla la scheda Fattura Elettronica."
+
+#. module: l10n_it_fatturapa_pec_cron
+#: code:addons/l10n_it_fatturapa_pec_cron/models/fatturapa_attachment_out.py:113
 #, python-format
 msgid "Error during E-invoice export"
 msgstr "Errore durante l'esportazione della fattura elettronica"
@@ -46,23 +52,25 @@ msgstr "Se selezionato, la fattura ha restituito dei problemi durante l'ultima e
 
 #. module: l10n_it_fatturapa_pec_cron
 #: model:ir.model,name:l10n_it_fatturapa_pec_cron.model_account_invoice
+#: view:website:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_view
 msgid "Invoice"
 msgstr "Fattura"
 
 #. module: l10n_it_fatturapa_pec_cron
-#: view:website:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_view
-msgid "Invoice number"
-msgstr "Numero fattura"
-
-#. module: l10n_it_fatturapa_pec_cron
 #: view:account.invoice:l10n_it_fatturapa_pec_cron.view_invoice_form_fatturapa_pec_cron
 msgid "Mark E-invoice errors as resolved"
-msgstr "Mark E-invoice errors as resolved"
+msgstr "Imposta gli errori come risolti"
 
 #. module: l10n_it_fatturapa_pec_cron
 #: view:website:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_view
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_it_fatturapa_pec_cron
+#: code:addons/l10n_it_fatturapa_pec_cron/models/fatturapa_attachment_out.py:75
+#, python-format
+msgid "Partner fiscal data missing. Check partner Accounting tab."
+msgstr "Dati fiscali del partner mancanti. Controlla la scheda Contabilità."
 
 #. module: l10n_it_fatturapa_pec_cron
 #: model:email.template,subject:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_qweb
@@ -82,7 +90,7 @@ msgstr "Mostra le fatture elettroniche con errori durante l'esportazione automat
 #. module: l10n_it_fatturapa_pec_cron
 #: view:website:l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_view
 msgid "The system was not able to generate this list of invoices."
-msgstr "Il sistema non e' stato in grado di generare questo elenco di fatture."
+msgstr "Il sistema non è stato in grado di generare questo elenco di fatture."
 
 #. module: l10n_it_fatturapa_pec_cron
 #: code:addons/l10n_it_fatturapa_pec_cron/models/account_invoice.py:28

@@ -6,14 +6,14 @@
 			<t t-set="base_url" t-value="object._context['base_url']"/>
 			<t t-set="invoice_action_id" t-value="object._context['invoice_action_id']"/>
 
-			<span class="align-left">Dear </span><t t-esc="object.name" />,<br />
-			<span class="header-md"> The system was not able to generate this list of invoices.</span><br />
-			<span class="header-md"> Review them and fix related errors.</span><br/><br />
+			<span class="align-left">Dear user,</span><br />
+			<span class="header-md">The system was not able to generate this list of invoices.</span><br />
+			<span class="header-md">Review them and fix related errors.</span><br/><br />
 
 			<table cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="1000px">
 				<thead>
 					<tr>
-						<th>Invoice number</th>
+						<th>Invoice</th>
 						<th>Partner</th>
 					</tr>
 				</thead>
@@ -25,8 +25,14 @@
 								<t t-set="invoice_url" t-value="base_url + '/web#action=' + str(invoice_action_id) + '&amp;id=' + str(invoice.id) + '&amp;view_type=form'"/>
 							</t>
 
-							<td class="align-left"><a t-att-href="invoice_url" target="_blank"><t t-esc="invoice.number"/></a></td>
-							<td class="align-left"><span t-field="invoice.partner_id" /></td>
+							<td class="align-left">
+                                <a t-att-href="invoice_url" target="_blank">
+                                    <t t-esc="invoice.number"/>
+                                </a>
+                            </td>
+							<td class="align-left">
+                                <span t-field="invoice.partner_id" />
+                            </td>
 						</tr>
 					</t>
 				</tbody>

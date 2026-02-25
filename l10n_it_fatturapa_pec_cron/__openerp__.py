@@ -8,7 +8,7 @@
 ##############################################################################
 {
     'name': 'Italian Localization - FatturaPA - Emission - PEC Support via cron',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.1.1',
     'category': 'Localisation/Italy',
     'author': "Elven Studio S.N.C.",
     'summary': 'Send electronic invoices via PEC with CRON',
@@ -16,6 +16,7 @@
     'license': 'LGPL-3',
 
     'depends': [
+        'account',
         'email_template_qweb',
         'l10n_it_reverse_charge',
         'l10n_it_fatturapa_pec',

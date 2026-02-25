@@ -30,19 +30,20 @@ class AccountInvoice(models.Model):
         return self.write({'fatturapa_out_error': False})
 
     @api.model
-    def cron_send_invoices_with_errors(self, invoice_action_id=None, user_id=0):
+    def cron_send_invoices_with_errors(self):
         # Get invoices with error
         invoices_with_error_ids = self.search([('fatturapa_out_error', '=', True)])
 
         # Generate email and send email
         if invoices_with_error_ids:
+            invoice_action_id = self.env.ref('account.action_invoice_tree1')
             email_vals = self.env['email.template'].with_context(
                 invoices_with_error=invoices_with_error_ids,
                 base_url=self.env['ir.config_parameter'].get_param('web.base.url'),
-                invoice_action_id=invoice_action_id,
+                invoice_action_id=invoice_action_id.id,
             ).generate_email(
                 self.env.ref('l10n_it_fatturapa_pec_cron.email_template_invoices_with_errors_qweb').id,
-                user_id
+                1
             )
             self.env['mail.mail'].create(email_vals).send()
 
