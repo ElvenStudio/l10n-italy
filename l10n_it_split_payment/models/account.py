@@ -42,7 +42,9 @@ class AccountInvoice(models.Model):
         compute='_compute_amount')
     split_payment = fields.Boolean(
         'Split Payment',
-        related='fiscal_position.split_payment')
+        related='fiscal_position.split_payment',
+        readonly=True
+    )
 
     amount_sp_total = fields.Float(
         string='Total with Split Payment',
